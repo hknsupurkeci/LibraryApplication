@@ -23,8 +23,16 @@ Kütüphane Yönetim Sistemi, kütüphanelerdeki kitapların takibi ve yönetimi
 - **ViewModel:** `BookViewModel` ve `BorrowBookViewModel`, kullanıcı arayüzünde kitap eklemek ve ödünç vermek için gerekli veri yapısını sağlar.
 
 - **View:** `index.cshtml` ve `create.cshtml` gibi Razor View'ları, kullanıcı arayüzünün nasıl görüneceğini ve çalışacağını belirler.
+  
+## Veritabanı Kurulumu
 
-## Kurulum ve Kullanım
+Projeyi klonladıktan sonra, Entity Framework Core migrations kullanarak veritabanınızı oluşturabilirsiniz. Projeyi indirdikten sonra, projenin kök dizininde aşağıdaki komutları çalıştırın:
+
+1. İlk migration'ı oluşturun:
+   ```bash
+   dotnet ef migrations add InitialCreate
+   dotnet ef database update
+## Kullanım
 
 Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 
