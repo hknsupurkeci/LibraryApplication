@@ -1,0 +1,37 @@
+@model LibraryApplication.ViewModel.BookViewModel
+
+@{
+    ViewData["Title"] = "Yeni Kitap Ekle";
+}
+@if(@TempData["Error"] != null)
+{
+    <script>alert('@TempData["Error"]');</script>
+}
+
+<h2>Yeni Kitap Ekle</h2>
+
+<form asp-action="Create" asp-controller="Book" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <div class="form-group mt-3">
+        <label asp-for="name" class="control-label">Kitap Adı</label>
+        <input asp-for="name" class="form-control" />
+        <span asp-validation-for="name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="author" class="control-label">Yazar Adı</label>
+        <input asp-for="author" class="form-control" />
+        <span asp-validation-for="author" class="text-danger"></span>
+    </div>
+
+    <div class="form-control">
+        <label asp-for="img" class="control-label">Kitap Resmi</label>
+        <input asp-for="img" class="form-control" />
+        <span asp-validation-for="img" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-2">
+        <input type="submit" value="Ekle" class="btn btn-primary" />
+    </div>
+</form>

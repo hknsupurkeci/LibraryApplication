@@ -1,0 +1,102 @@
+@model IEnumerable<LibraryApplication.Models.Book>
+
+@{
+    ViewData["Title"] = "Kitap Listesi";
+}
+<div class="mb-3">
+    <center>
+        <h2>Kitap Listesi</h2><br>
+    </center>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <!-- Statusu true olan kitaplar listelenecek -->
+            @if (book.status)
+            {
+                @* Sirasiyla 1 - 2 - 3 - 4 e bölünür *@
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3" id="book-card-@book.id">
+                    <div class="book-card">
+                        <div class="book-card__cover">
+                            <div class="book-card__book">
+                                <div class="book-card__book-front">
+                                    <img class="book-card__img" src="~/images/@book.img" alt="Kitap Resmi" />
+                                </div>
+                                <div class="book-card__book-back"></div>
+                                <div class="book-card__book-side"></div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- Kitap Bilgileri -->
+                            <center>
+                                <div class="book-card__title"><b>@book.name</b></div>
+                                <div class="book-card__author"><b>@book.author</b></div>
+
+                                @if (book.isAvaible)
+                                {
+                                    <!-- Kitap Müsaitse Ödünç Ver Butonu -->
+                                    <div class="col mt-3">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            onclick="setBookId(@book.id, this)">Ödünç Ver</button>
+                                    </div>
+                                    <!-- Koşula bağlı olarak görüntülenecek alanlar, müsait olduğunda boş -->
+                                    <div class="card-used-username"></div>
+                                    <div class="card-used-deliverydate"></div>
+                                }
+                                else
+                                {
+                                    @if (book.BorrowedBooks != null && book.BorrowedBooks.Any())
+                                    {
+                                        @foreach (var borrowedBook in book.BorrowedBooks)
+                                        {
+                                            <!-- Eğer statusu true ise yani actik etkin olani gösterecek -->
+                                            @if (borrowedBook.status)
+                                            {
+                                                <!-- Kitap Müsait Değilse Bilgiler -->
+                                                <div class="card-used-username mt-2">@borrowedBook.user_name</div>
+                                                <div class="card-used-deliverydate">@borrowedBook.delivery_date.ToString("yyyy-MM-dd")</div>
+                                            }
+                                        }
+                                    }
+                                }
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+<!-- Modal -->
+<form id="borrowBookForm">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Kitap Ödünç Ver</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Tiklanilan kitabin idsini buraya atiyor -->
+                    <input type="hidden" id="book_id" name="book_id">
+                    <div class="form-group">
+                        <label for="user_name">Adınız</label>
+                        <input type="text" class="form-control" name="user_name" id="user_name" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="delivery_date">Geri verilecek tarih</label>
+                        <input type="date" class="form-control" name="delivery_date" id="delivery_date" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
