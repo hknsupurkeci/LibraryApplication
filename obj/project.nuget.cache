@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CzaVDM9T3JkJw3WWSwPXetbq7fM5p+w47BUcj5hkr4PLqeHY/ogInxeZ+hOQuOWUryVP5TlwZm8D52ks5iBlJg==",
+  "dgSpecHash": "gzZmooJvSgZ9MD9dcY3u6g8f0HVBp0rbLBwnmsVMQO4Y6pBVl5ROFDd9lD4fbsqnFQU3xmuOliUhaBPg4K08sw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\LibraryApplication.csproj",
   "expectedPackageFiles": [
@@ -52,7 +52,7 @@
     "C:\\Users\\Hakan\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Hakan\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\Hakan\\.nuget\\packages\\serilog\\3.1.1\\serilog.3.1.1.nupkg.sha512",
-    "C:\\Users\\Hakan\\.nuget\\packages\\serilog.aspnetcore\\8.0.0\\serilog.aspnetcore.8.0.0.nupkg.sha512",
+    "C:\\Users\\Hakan\\.nuget\\packages\\serilog.aspnetcore\\8.0.1\\serilog.aspnetcore.8.0.1.nupkg.sha512",
     "C:\\Users\\Hakan\\.nuget\\packages\\serilog.extensions.hosting\\8.0.0\\serilog.extensions.hosting.8.0.0.nupkg.sha512",
     "C:\\Users\\Hakan\\.nuget\\packages\\serilog.extensions.logging\\8.0.0\\serilog.extensions.logging.8.0.0.nupkg.sha512",
     "C:\\Users\\Hakan\\.nuget\\packages\\serilog.formatting.compact\\2.0.0\\serilog.formatting.compact.2.0.0.nupkg.sha512",
@@ -84,16 +84,5 @@
     "C:\\Users\\Hakan\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\Hakan\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "LibraryApplication depends on Serilog.AspNetCore (>= 7.0.13) but Serilog.AspNetCore 7.0.13 was not found. An approximate best match of Serilog.AspNetCore 8.0.0 was resolved.",
-      "libraryId": "Serilog.AspNetCore",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

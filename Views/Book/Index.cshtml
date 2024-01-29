@@ -41,7 +41,7 @@
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                             onclick="setBookId(@book.id, this)">Ödünç Ver</button>
                                     </div>
-                                    <!-- Koşula bağlı olarak görüntülenecek alanlar, müsait olduğunda boş -->
+                                    <!-- Koşula bağli olarak görüntülenecek alanlar, müsait olduğunda boş -->
                                     <div class="card-used-username"></div>
                                     <div class="card-used-deliverydate"></div>
                                 }
@@ -51,7 +51,7 @@
                                     {
                                         @foreach (var borrowedBook in book.BorrowedBooks)
                                         {
-                                            <!-- Eğer statusu true ise yani actik etkin olani gösterecek -->
+                                            <!-- Eğer statusu true ise yani aktik etkin olani gösterecek -->
                                             @if (borrowedBook.status)
                                             {
                                                 <!-- Kitap Müsait Değilse Bilgiler -->
@@ -93,6 +93,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    @Html.AntiForgeryToken()
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
                     <button type="submit" class="btn btn-primary">Kaydet</button>
                 </div>

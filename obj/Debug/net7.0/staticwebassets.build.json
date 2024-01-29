@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XhDVnxlaObS8LdoxZ0Ve00aAJHRRNyt4G0o4+zyL9nk=",
+  "Hash": "tLsQvMUEqT3xnYe4jtmmOSBSCEqpuR5somDSgOvLLE8=",
   "Source": "LibraryApplication",
   "BasePath": "_content/LibraryApplication",
   "Mode": "Default",
@@ -1562,6 +1562,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\9aeb0d53-4104-4cab-b78e-79ea64e6ef4f-Bulbulden-Şükrü-bülbül.png"
+    },
+    {
+      "Identity": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\images\\a18c3e92-6a81-4449-bfb9-4b5892542cf7-kil-niyazi-833206-44-K.jpg",
+      "SourceId": "LibraryApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\",
+      "BasePath": "_content/LibraryApplication",
+      "RelativePath": "images/a18c3e92-6a81-4449-bfb9-4b5892542cf7-kil-niyazi-833206-44-K.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\a18c3e92-6a81-4449-bfb9-4b5892542cf7-kil-niyazi-833206-44-K.jpg"
     },
     {
       "Identity": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\images\\a24ef5f0-1478-49fc-8cfa-26f5f9b45743-mutluluk-tuzagi-389435-597073-38-K.jpg",

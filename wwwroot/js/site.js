@@ -19,11 +19,12 @@ $(document).ready(function() {
             user_name: $('#user_name').val(),
             delivery_date: $('#delivery_date').val()
         };
-
+        var token = $('input[name="__RequestVerificationToken"]').val();
         $.ajax({
             url: '/Book/BorrowBook',
             type: 'POST',
             contentType: 'application/json',
+            headers: {"RequestVerificationToken": token},
             data: JSON.stringify(formData),
             success: function(response) {
                 console.log("AJAX success, response: ", response); // Konsol logu ekle
