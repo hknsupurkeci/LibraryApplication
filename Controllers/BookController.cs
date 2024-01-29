@@ -207,9 +207,9 @@ namespace LibraryApplication.Controllers
             {
                 if (bookViewModel.img != null)
                 {
-                    string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "images");
-                    string fileName = Guid.NewGuid().ToString() + "-" + bookViewModel.img.FileName;
-                    string filePath = Path.Combine(uploadDir, fileName);
+                    string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "images"); // WebRootPath'e images alt yolunu ekliyor
+                    string fileName = Guid.NewGuid().ToString() + "-" + bookViewModel.img.FileName; // Daha sonra ilgili görsele uygun bir spesifik isim oluşturuluyor. FileName: Yüklenen dosyanın adını içerir.
+                    string filePath = Path.Combine(uploadDir, fileName); // Path ile isim birleştiriliyor.
 
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
