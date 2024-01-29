@@ -44,7 +44,7 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 ## Kullanılan Teknolojiler
 
 - **Backend:** .NET Core MVC
-- **Veritabanı:** MSSQL veya PostgreSQL
+- **Veritabanı:** MSSQL
 - **ORM:** Entity Framework
 - **Frontend:** HTML5, Bootstrap, jQuery
 
