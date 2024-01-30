@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="delivery_date">Geri verilecek tarih</label>
-                        <input type="date" class="form-control" name="delivery_date" id="delivery_date" required>
+                        <input type="date" class="form-control" name="delivery_date" id="delivery_date" min=@DateTime.Now.AddDays(+1).ToString("yyyy-MM-dd") required>
                     </div>
                 </div>
                 <div class="modal-footer">
