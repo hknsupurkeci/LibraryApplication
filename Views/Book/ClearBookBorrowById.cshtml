@@ -1,13 +1,13 @@
 @{
-    ViewData["Title"] = "Clear Book Borrow By ID";
+    ViewData["Title"] = "Kimliğe Göre Kitap Ödünç Almayı Temizle";
 }
 
 <h2>@ViewData["Title"]</h2>
 
 <form asp-action="ClearBookBorrowById" asp-controller="Book" method="post">
     <div class="form-group">
-        <label for="bookId">Book ID:</label>
+        <label for="bookId" class="mt-2">Kitap ID:</label>
         <input type="number" class="form-control" id="bookId" name="id" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary mt-2">Gönder</button>
 </form>
