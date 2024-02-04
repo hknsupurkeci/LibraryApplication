@@ -3,4 +3,4 @@
 2024-02-04 12:04:35.574 +03:00 [ERR] istenmeyen dosya tipi
 2024-02-04 12:05:12.350 +03:00 [ERR] istenmeyen dosya tipi
 2024-02-04 12:08:14.553 +03:00 [ERR] istenmeyen dosya tipi
-2024-02-04 12:41:15.257 +03:00 [ERR] istenmeyen dosya tipi
+2024-02-04 12:41:15.257 +03:00 [ERR] istenmeyen dosya tipi/
