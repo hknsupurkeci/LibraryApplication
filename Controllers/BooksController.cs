@@ -10,13 +10,13 @@ using Microsoft.Extensions.Logging;
 
 namespace LibraryApplication.Controllers
 {
-    public class BookController : Controller
+    public class BooksController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly ILogger<BookController> _logger;
+        private readonly ILogger<BooksController> _logger;
 
-        public BookController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, ILogger<BookController> logger)
+        public BooksController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, ILogger<BooksController> logger)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
@@ -86,7 +86,10 @@ namespace LibraryApplication.Controllers
                 }
 
                 string? fileName = UploadFile(bookViewModel);
-
+                if(fileName == null)
+                {
+                    return View(bookViewModel);
+                }
                 var book = new Book
                 {
                     name = bookViewModel.name,
@@ -111,88 +114,7 @@ namespace LibraryApplication.Controllers
             }
         }
 
-        /// <summary>
-        /// Kullanıcının ödünç almak istediği kitabı işler ve durumunu günceller.
-        /// Kitap mevcut değilse veya müsait değilse hata mesajı döndürür.
-        /// </summary>
-        /// <param name="model">Ödünç alınacak kitap için veri modeli.</param>
-        /// <returns>İşlem başarılıysa başarılı mesajı, aksi halde hata mesajı içeren bir JSON nesnesi.</returns>
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> BorrowBook([FromBody] BorrowBookViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return Json(new { success = false, message = "Geçersiz veri girişi." });
-            }
-
-            // Su andan ileri bir tarih seçmeli, eğer küçük veya eşitse false dönecek
-            if(model.delivery_date <= DateTime.Now)
-            {
-                return Json(new { success = false, message = "Seçilen tarih, şuanki tarihten küçük olamaz." });
-            }
-
-            try
-            {
-                var borrowBook = new BorrowedBook
-                {
-                    book_id = model.book_id,
-                    user_name = model.user_name,
-                    delivery_date = model.delivery_date,
-                    status = true,
-                    created_at = DateTime.Now,
-                    updated_at = DateTime.Now
-                };
-
-                var book = await MarkAsBorrowed(model.book_id);
-                if (book == null)
-                {
-                    return Json(new { success = false, message = "Kitap bulunamadi veya şu anda müsait değil." });
-                }
-
-                book.BorrowedBooks = book.BorrowedBooks ?? new List<BorrowedBook>();
-                book.BorrowedBooks.Add(borrowBook);
-
-                _context.Add(borrowBook);
-                await _context.SaveChangesAsync();
-
-                return Json(new { success = true, message = "Kitap başariyla ödünç verildi!" });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "BorrowBook metodunda hata oluştu");
-                return Json(new { success = false, message = "İşlem sirasinda bir hata oluştu." });
-            }
-        }
-
-        /// <summary>
-        /// Belirtilen ID'ye sahip kitabın ödünç alınabilir durumunu günceller.
-        /// Kitap mevcut değilse veya zaten ödünç alınmışsa null döndürür.
-        /// </summary>
-        /// <param name="bookId">Ödünç alınacak kitabın ID'si.</param>
-        /// <returns>İşlem başarılıysa güncellenmiş kitap nesnesi, aksi halde null.</returns>
-
-        public async Task<Book?> MarkAsBorrowed(int bookId)
-        {
-            try
-            {
-                var book = await _context.books.FindAsync(bookId);
-                if (book != null && book.isAvaible)
-                {
-                    book.isAvaible = false;
-                    await _context.SaveChangesAsync();
-                    return book;
-                }
-
-                return null;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "MarkAsBorrowed metodunda hata oluştu");
-                return null;
-            }
-        }
 
         /// <summary>
         /// BookViewModel içindeki resim dosyasını sunucuya yükler.
@@ -207,10 +129,16 @@ namespace LibraryApplication.Controllers
             {
                 if (bookViewModel.img != null)
                 {
+                    string fileExtension = Path.GetExtension(bookViewModel.img.FileName).ToLower(); // Dosya uzantısı tipini küçük harf olarak al
+                    if(fileExtension != ".png" && fileExtension != ".jpg")
+                    {
+                        _logger.LogError("istenmeyen dosya tipi");
+                        ModelState.AddModelError("", "Dosya tipi sadece png ve jpg kabul edilebilir.");
+                        return null;
+                    }
                     string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "images"); // WebRootPath'e images alt yolunu ekliyor
                     string fileName = Guid.NewGuid().ToString() + "-" + bookViewModel.img.FileName; // Daha sonra ilgili görsele uygun bir spesifik isim oluşturuluyor. FileName: Yüklenen dosyanın adını içerir.
                     string filePath = Path.Combine(uploadDir, fileName); // Path ile isim birleştiriliyor.
-
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         bookViewModel.img.CopyTo(fileStream);
@@ -240,21 +168,20 @@ namespace LibraryApplication.Controllers
         }
 
         /// <summary>
-        /// Belirtilen ID'ye sahip kitabın ödünç durumunu temizler ve kitabı tekrar müsait hale getirir.
+        /// Belirtilen Name'e sahip kitabın ödünç durumunu temizler ve kitabı tekrar müsait hale getirir.
         /// Kitap bulunamazsa hata sayfasına yönlendirir.
         /// </summary>
-        /// <param name="id">Durumu temizlenecek kitabın ID'si.</param>
-        /// <returns>İşlem başarılıysa kit
+        /// <param name="name">Durumu temizlenecek kitabın name'i.</param>
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ClearBookBorrowById(int id)
+        public async Task<IActionResult> ClearBookBorrowById(string name)
         {
             try
             {
                 var book = await _context.books
                     .Include(b => b.BorrowedBooks)
-                    .FirstOrDefaultAsync(b => b.id == id);
+                    .FirstOrDefaultAsync(b => b.name == name);
 
                 if (book == null)
                 {
@@ -266,6 +193,7 @@ namespace LibraryApplication.Controllers
                     foreach (var borrowedBook in book.BorrowedBooks)
                     {
                         borrowedBook.status = false;
+                        // break koyulabilir, zaten bir tane olacak ama olası durumlara karşı kalsın.
                     }
                 }
 

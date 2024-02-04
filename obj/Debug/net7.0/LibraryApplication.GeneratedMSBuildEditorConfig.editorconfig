@@ -16,24 +16,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Hakan\Documents\GitHub\LibraryApplication
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Hakan/Documents/GitHub/LibraryApplication/Views/Book/ClearBookBorrowById.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xDbGVhckJvb2tCb3Jyb3dCeUlkLmNzaHRtbA==
+[C:/Users/Hakan/Documents/GitHub/LibraryApplication/Views/Books/ClearBookBorrowById.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcQ2xlYXJCb29rQm9ycm93QnlJZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hakan/Documents/GitHub/LibraryApplication/Views/Book/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xDcmVhdGUuY3NodG1s
+[C:/Users/Hakan/Documents/GitHub/LibraryApplication/Views/Books/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hakan/Documents/GitHub/LibraryApplication/Views/Book/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Hakan/Documents/GitHub/LibraryApplication/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Hakan/Documents/GitHub/LibraryApplication/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/Hakan/Documents/GitHub/LibraryApplication/Views/Books/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hakan/Documents/GitHub/LibraryApplication/Views/Shared/Error.cshtml]

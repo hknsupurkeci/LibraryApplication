@@ -44,7 +44,8 @@ html {
 
 
 .book-card {
-
+  min-height: 500px;
+  height: 100%;
   padding: 16px;
   border-radius: 5px;
   background-color: #fff;

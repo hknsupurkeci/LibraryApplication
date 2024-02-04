@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Kitabi Ödünç Alanı Sıfırla";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="ClearBookBorrowById" asp-controller="Books" method="post">
+    <div class="form-group">
+        <label for="bookName" class="mt-2">Kitap Adı:</label>
+        <input type="text" class="form-control" id="bookName" name="name" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Gönder</button>
+</form>

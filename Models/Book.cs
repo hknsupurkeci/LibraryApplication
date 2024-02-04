@@ -21,7 +21,7 @@ namespace LibraryApplication.Models
         public DateTime updated_at { get; set; }
 
         // BorrowedBook kaydına sahip olabileceğini gösterir. Yani, bir kitap (Book) birden fazla kez ödünç alınabilir ve her ödünç alınma olayı BorrowedBook sınıfıyla kaydedilir.
-        // "Lazy Loading", ilişkili verilerin (bu durumda BorrowedBooks) sadece gerektiğinde yüklenmesini sağlar.
+        // "Lazy Loading", ilişkili verilerin (bu durumda BorrowedBooks) sadece gerektiğinde ihtiyaç duyulduğunda yüklenmesini sağlar.
         public virtual ICollection<BorrowedBook>? BorrowedBooks { get; set; }
     }
 }

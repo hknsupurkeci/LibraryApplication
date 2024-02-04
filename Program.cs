@@ -73,7 +73,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Book}/{action=Index}/{id?}");
+    pattern: "{controller=Books}/{action=Index}/{id?}");
 
 app.Logger.LogInformation("Starting the app");
 app.Run();
