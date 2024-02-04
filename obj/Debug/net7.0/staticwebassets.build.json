@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "V1s45LO6HMKIlDTIQTp/RVawY7RZYGOxzBOBIhJ1ax4=",
+  "Hash": "2Mcl202K2169b3rPgnPO4w7f7BLOcdM3yjg+vFXJ3ZA=",
   "Source": "LibraryApplication",
   "BasePath": "_content/LibraryApplication",
   "Mode": "Default",
@@ -1103,6 +1103,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\images\\a9d99dab-7749-4381-be10-e5a8d91a03bb-hobbit-j-r-r-tolkien.jpg",
+      "SourceId": "LibraryApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\",
+      "BasePath": "_content/LibraryApplication",
+      "RelativePath": "images/a9d99dab-7749-4381-be10-e5a8d91a03bb-hobbit-j-r-r-tolkien.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\a9d99dab-7749-4381-be10-e5a8d91a03bb-hobbit-j-r-r-tolkien.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\images\\c8a8cb02-9edd-4fd4-bcf5-b741af8ad469-melekler-ve-seytanlar-dan-brown.jpg",
+      "SourceId": "LibraryApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\",
+      "BasePath": "_content/LibraryApplication",
+      "RelativePath": "images/c8a8cb02-9edd-4fd4-bcf5-b741af8ad469-melekler-ve-seytanlar-dan-brown.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\c8a8cb02-9edd-4fd4-bcf5-b741af8ad469-melekler-ve-seytanlar-dan-brown.jpg"
     },
     {
       "Identity": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\js\\site.js",

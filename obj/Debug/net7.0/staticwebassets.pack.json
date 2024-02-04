@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\images\\a9d99dab-7749-4381-be10-e5a8d91a03bb-hobbit-j-r-r-tolkien.jpg",
+      "PackagePath": "staticwebassets\\images\\a9d99dab-7749-4381-be10-e5a8d91a03bb-hobbit-j-r-r-tolkien.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\images\\c8a8cb02-9edd-4fd4-bcf5-b741af8ad469-melekler-ve-seytanlar-dan-brown.jpg",
+      "PackagePath": "staticwebassets\\images\\c8a8cb02-9edd-4fd4-bcf5-b741af8ad469-melekler-ve-seytanlar-dan-brown.jpg"
+    },
+    {
       "Id": "C:\\Users\\Hakan\\Documents\\GitHub\\LibraryApplication\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

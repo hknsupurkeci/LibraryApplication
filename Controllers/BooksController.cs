@@ -12,6 +12,9 @@ namespace LibraryApplication.Controllers
 {
     public class BooksController : Controller
     {
+        private const long MaxFileSizeKB = 1000; // 1MB
+        private readonly string[] AllowedFileExtensions = new[] { ".png", ".jpg" };
+
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ILogger<BooksController> _logger;
@@ -23,7 +26,7 @@ namespace LibraryApplication.Controllers
             _logger = logger;
         }
 
-        // GET: Book
+        // GET: Books
         /// <summary>
         /// Kitap listesini alfabetik sıraya göre getirir ve her kitap için ödünç alınan kitapları da içerir.
         /// Hata oluşması durumunda hata sayfasına yönlendirir.
@@ -48,7 +51,7 @@ namespace LibraryApplication.Controllers
             }
         }
 
-        // GET: Book/Create
+        // GET: Books/Create
         /// <summary>
         /// Yeni kitap oluşturma formunu görüntüler.
         /// </summary>
@@ -59,7 +62,7 @@ namespace LibraryApplication.Controllers
             return View();
         }
 
-        // POST: Book/Create
+        // POST: Books/Create
         /// <summary>
         /// Gönderilen BookViewModel kullanarak yeni bir kitap oluşturur.
         /// Eğer kitabın ismi önceden mevcutsa hata mesajı döndürür.
@@ -86,7 +89,7 @@ namespace LibraryApplication.Controllers
                 }
 
                 string? fileName = UploadFile(bookViewModel);
-                if(fileName == null)
+                if (fileName == null)
                 {
                     return View(bookViewModel);
                 }
@@ -127,33 +130,60 @@ namespace LibraryApplication.Controllers
         {
             try
             {
-                if (bookViewModel.img != null)
-                {
-                    string fileExtension = Path.GetExtension(bookViewModel.img.FileName).ToLower(); // Dosya uzantısı tipini küçük harf olarak al
-                    if(fileExtension != ".png" && fileExtension != ".jpg")
-                    {
-                        _logger.LogError("istenmeyen dosya tipi");
-                        ModelState.AddModelError("", "Dosya tipi sadece png ve jpg kabul edilebilir.");
-                        return null;
-                    }
-                    string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "images"); // WebRootPath'e images alt yolunu ekliyor
-                    string fileName = Guid.NewGuid().ToString() + "-" + bookViewModel.img.FileName; // Daha sonra ilgili görsele uygun bir spesifik isim oluşturuluyor. FileName: Yüklenen dosyanın adını içerir.
-                    string filePath = Path.Combine(uploadDir, fileName); // Path ile isim birleştiriliyor.
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        bookViewModel.img.CopyTo(fileStream);
-                    }
+                if (bookViewModel.img == null) return null;
 
-                    return fileName;
+                string fileExtension = Path.GetExtension(bookViewModel.img.FileName).ToLower();
+                long fileKB = bookViewModel.img.Length / 1024;
+
+                if (!IsFileValid(fileExtension, fileKB))
+                {
+                    return null;
                 }
 
-                return null;
+                string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                string fileName = $"{Guid.NewGuid()}-{bookViewModel.img.FileName}";
+                string filePath = Path.Combine(uploadDir, fileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    bookViewModel.img.CopyTo(fileStream);
+                }
+
+                return fileName;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "UploadFile metodunda hata oluştu");
+                _logger.LogError(ex, "UploadFile methodunda hata olustu");
                 return null;
             }
+        }
+        /// <summary>
+        /// Verilen dosyanın uzantısının ve boyutunun belirli kriterlere uygun olup olmadığını kontrol eder.
+        /// </summary>
+        /// <param name="fileExtension">Kontrol edilecek dosya uzantısı, izin verilen uzantılar listesi ile karşılaştırılır.</param>
+        /// <param name="fileKB">Dosyanın kilobayt (KB) cinsinden boyutu, maksimum izin verilen boyut ile karşılaştırılır.</param>
+        /// <returns>
+        /// Dosya uzantısı izin verilenler arasındaysa ve dosya boyutu maksimum sınırı aşmıyorsa <c>true</c>; aksi takdirde, <c>false</c>.
+        /// Geçersiz dosya tipleri veya limiti aşan boyutlar için bir hata kaydeder ve bir model hatası ekler.
+        /// </returns>
+
+        private bool IsFileValid(string fileExtension, long fileKB)
+        {
+            if (!AllowedFileExtensions.Contains(fileExtension))
+            {
+                _logger.LogError("istenmeyen dosya tipi");
+                ModelState.AddModelError("", "Dosya uzantilari .png veya .jpg olabilir.");
+                return false;
+            }
+
+            if (fileKB > MaxFileSizeKB)
+            {
+                _logger.LogError("Dosya boyutu aralik disinde");
+                ModelState.AddModelError("", "Kabul edilebilir dosya boyutu 1MB'den fazla olamaz.");
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
